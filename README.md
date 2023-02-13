@@ -51,7 +51,7 @@ services.AddTransient<ISomeService, BarService>("bar");
 ```
 
 ## How it works
-Just before `IHostBuilder` initializes the `IServiceProvider` a slight modification is made to the last `NamedServiceDescriptor` for every named service type inside `IServiceCollection`. It introduces (or replaces) the `Func<IServiceProvider, TService> implementationFactory` with one that knows which implementation type to pick.
+Just before `IHostBuilder` initializes the `IServiceProvider` a slight modification is made to the last `NamedServiceDescriptor` for every named service type inside `IServiceCollection`. It introduces (or replaces) the `Func<IServiceProvider, TService> implementationFactory` with one that knows which implementation type to pick (it keeps the original though, in case it picks itself).
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/5320517/218338012-9e008b4b-9444-41a0-8ac2-f5d3b2be2f4d.png">
