@@ -1,11 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <Description>Named dependency resolution using Microsoft DI. Service locator free. Factory free. Gluten free.</Description>
+        <Authors>Jernej Goricki</Authors>
+        <PackageId>TinyNamedServiceResolver</PackageId>
+        <PackageTags>Dependency;Injection;DI</PackageTags>
+        <PackageProjectUrl>https://github.com/jernejg/tiny-named-service-resolver</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/jernejg/tiny-named-service-resolver</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <SignAssembly>true</SignAssembly>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <LangVersion>11.0</LangVersion>
         <WarningsAsErrors>true</WarningsAsErrors>
         <Nullable>enable</Nullable>
         <AssemblyName>TinyNamedServiceResolver</AssemblyName>
         <RootNamespace>TinyNamedServiceResolver</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
