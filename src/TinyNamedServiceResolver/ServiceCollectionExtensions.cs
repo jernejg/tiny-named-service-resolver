@@ -59,4 +59,31 @@ public static class ServiceCollectionExtensions
             serviceName)
         );
     }
+
+    public static void AddScoped<TService, TImplementation>(this IServiceCollection services, string serviceName)
+        where TService : class
+        where TImplementation : class, TService
+    {
+        ArgumentNullException.ThrowIfNull(serviceName);
+        services.Add(new NamedServiceDescriptor(
+            typeof(TService),
+            typeof(TImplementation),
+            ServiceLifetime.Scoped,
+            serviceName)
+        );
+    }
+
+    public static void AddScoped<TService>(this IServiceCollection services,
+        Func<IServiceProvider, object> factory,
+        string serviceName)
+        where TService : class
+    {
+        ArgumentNullException.ThrowIfNull(serviceName);
+        services.Add(new NamedServiceDescriptor(
+            typeof(TService),
+            factory,
+            ServiceLifetime.Scoped,
+            serviceName)
+        );
+    }
 }
