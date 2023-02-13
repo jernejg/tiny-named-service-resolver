@@ -78,28 +78,24 @@ public class TinyNamedServiceProviderFactory : IServiceProviderFactory<IServiceC
                 namedDescriptorsCache.TryGetValue((_nameProvider(provider), serviceType), out var namedDescriptor)
                     ? namedDescriptor
                     : defaultDescriptorsCache[serviceType]);
-
-            if (result == null)
-            {
-                throw new Exception("Can't happen");
-            }
-
+            
             return result;
         }
 
         return services.BuildServiceProvider();
     }
 
-    private static object? InitInstance(IServiceProvider provider, ServiceDescriptor descriptor)
+    private static object InitInstance(IServiceProvider provider, ServiceDescriptor descriptor)
     {
         if (descriptor.ImplementationType is not null)
         {
             return ActivatorUtilities.CreateInstance(provider, descriptor.ImplementationType);
         }
-
+        
         return descriptor.ImplementationFactory is not null
             ? descriptor.ImplementationFactory(provider)
-            : descriptor.ImplementationInstance;
+            // ImplementationType, ImplementationFactory or ImplementationInstance can't all be null
+            : descriptor.ImplementationInstance!;
     }
 
     private static void CheckLifetimeConsistency(IServiceCollection services,
